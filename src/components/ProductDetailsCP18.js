@@ -16,6 +16,50 @@ import relatedProduct from '../product-local-json/you-may-also-like.json'
 
 const StyledImg = styled.img`
   border: ${(props) => props.border};
+`;
+
+const DisplayHeartItem=styled.div`
+position:absolute;
+top:10%;
+right:10px;
+margin-right:20px;
+background-color:#fff;
+width:200px;
+height:200px;
+box-shadow:0px 4px 10px rgba(0, 0, 0, 0.45);
+z-index:1031;
+`
+const HoverImg = styled.img`
+width:100px;
+`
+
+const HeartWrap=styled.div`
+padding:10px;
+display:flex;
+flex-direction:column;
+align-items: center;
+justify-content: space-between;
+`
+
+const HeartTitle=styled.div`
+  font-size:14px;
+  margin:10px auto 5px auto;
+`
+
+const HeartPrice=styled.div`
+  font-size:10px;
+  margin-top:5px;
+  color:#646464;
+`
+
+const HeartBtn=styled.a`
+  font-size:10px;
+  margin-bottom:-5px;
+  padding:3px;
+  border-radius:50%;
+  margin-right:5px;
+  margin-left:auto;
+  text-decoration:none;
 `
 
 const catRelatedData = relatedProduct['Cat-Related']
@@ -24,8 +68,9 @@ const ProductDetailsCP18 = ({ ID, ProductImg, ProductTitle, ProductPrice }) => {
   const [{ basket }, dispatch] = useStateValue()
   const cp18Data = CAT_PRODUCT['Cat-Play-2'][1]
   const [bigPic, setBigPic] = useState(`${cp18Data.pics[0]}`)
-  console.log(cp18Data)
+  // console.log(cp18Data)
   const [border, setBorder] = useState('AG-pic1')
+  const [isDisplay,setIsDisplay]= useState(false)
 
   const handleImgClick = (e) => {
     setBorder(e.target.id)
@@ -40,8 +85,9 @@ const ProductDetailsCP18 = ({ ID, ProductImg, ProductTitle, ProductPrice }) => {
         image: cp18Data.URL,
         title: cp18Data.title,
         price: cp18Data.price,
-      },
+      }
     })
+    setIsDisplay(true)
   }
 
   const addToHeart = () => {
@@ -58,13 +104,23 @@ const ProductDetailsCP18 = ({ ID, ProductImg, ProductTitle, ProductPrice }) => {
 
   return (
     <>
+    { isDisplay &&
+    <DisplayHeartItem>
+    <HeartWrap>
+    <HeartBtn onClick={()=>setIsDisplay(false)}>X</HeartBtn>
+      <HoverImg src={cp18Data.URL}/>
+      <HeartTitle>{cp18Data.title}</HeartTitle>
+      <HeartPrice>1 x ${cp18Data.price}</HeartPrice>
+    </HeartWrap>
+    </DisplayHeartItem>}
+
       <div className="AG-productList-container">
         <div className="AG-productTags">
-          <ProductListTag>貓貓美食</ProductListTag>
-          <ProductListTag>貓貓玩具</ProductListTag>
-          <ProductListTag>貓貓廁所</ProductListTag>
-          <ProductListTag>貓貓保健</ProductListTag>
-          <ProductListTag>貓貓出遊</ProductListTag>
+        <Link to="/productlist/cat/food"><ProductListTag >貓貓美食</ProductListTag></Link>
+        <Link to="/productlist/cat"><ProductListTag >貓貓玩具</ProductListTag></Link>
+        <Link to="/productlist/cat/toilet"><ProductListTag >貓貓廁所</ProductListTag></Link>
+        <Link to="/productlist/cat/health"><ProductListTag >貓貓保健</ProductListTag></Link>
+        <Link to="/productlist/cat/outdoor"><ProductListTag >貓貓出遊</ProductListTag></Link>
         </div>
         <div className="AG-addToCartContainer">
           <div className="AG-fourPics">

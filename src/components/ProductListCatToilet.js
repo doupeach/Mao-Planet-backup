@@ -27,7 +27,7 @@ const ProductListCatToilet = (tag)=>{
         <Link to="/productlist/cat/health"><ProductListTag >貓貓保健</ProductListTag></Link>
         <Link to="/productlist/cat/outdoor"><ProductListTag >貓貓出遊</ProductListTag></Link>
         </div>
-            <ProductListSubHero subHero={subHero_catToilet}/>
+            <ProductListSubHero subHero={subHero_catToilet} title={"貓貓廁所"} article={"舒適兼具美觀的設計，為毛小孩打造專屬的百萬浴廁！"}/>
             <ProductListTitle subTitle={"貓貓廁所"} engTitle={"Toilets"}/>
         <div className='AG-productCards'>
         {catToilet.map((item) => {

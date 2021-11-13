@@ -25,7 +25,7 @@ const ProductListDogToilet = (tag)=>{
         <Link to="/productlist/dog/health"><ProductListTag >狗狗保健</ProductListTag></Link>
         <Link to="/productlist/dog/outdoor"><ProductListTag >狗狗出遊</ProductListTag></Link>
         </div>
-            <ProductListSubHero subHero={subHero_dogToilet}/>
+            <ProductListSubHero subHero={subHero_dogToilet} title={"狗狗廁所"} article={"舒適兼具美觀的設計，為毛小孩打造專屬的百萬浴廁！"}/>
             <ProductListTitle subTitle={"狗狗廁所"} engTitle={"Toilets"}/>
         <div className='AG-productCards'>
         {dogToilet.map((item) => {
